@@ -51,7 +51,7 @@ $recipes =
         ],
     ];
 
-function isValidRecipe(array $recipe)
+function isValidRecipe(array $recipe): bool
 {
     if (array_key_exists('isDisplayed', $recipe)) {
         $value = $recipe['isDisplayed'];
@@ -61,6 +61,15 @@ function isValidRecipe(array $recipe)
     return $value;
 }
 
+function displayableRecipes(array $recipes): array
+{
+    $value = [];
+    foreach ($recipes as $item) {
+        if (isValidRecipe($item))
+            $value[] = $item;
+    }
+    return $value;
+}
 
 
 ?>
