@@ -1,28 +1,32 @@
+<?php
+
+// Déclaration du tableau des recettes : nom , contenu, afficher.
+$recipes = [
+    ['Pizza Classic', 'Ingredients', 'classic.andy@jaymeyl.com', true,],
+    ['Pizza Yolo', 'Ingredients', 'four.furieu@jaymeyl.com', false,],
+    ['Pizza Spicy', 'Ingredients', 'four.furieu@jaymeyl.com', true,],
+    ['Pizza Reptilien', 'Ingredients', 'Anna.Conda@jaymeyl.com', true,],
+];
+
+$totalrecipes = 4;
+
+?>
+
+<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>Ceci est une page HTML de test</title>
+    <title>Affichage des recettes</title>
 </head>
 
 <body>
-    <h2>Page de test</h2>
-    <p>
-        Cette page contient <strong>uniquement</strong> du code HTML.<br />
-
-
-        Voici quelques petits tests :
-
-
-    </p>
-
     <ul>
-        <li style="color: blue;">Texte en bleu</li>
-        <li style="color: red;">Texte en rouge</li>
-        <li style="color: green;">Texte en vert</li>
+        <?php for ($lines = 0; $lines < $totalrecipes; $lines++) : ?>
+            <?php if ($recipes[$lines][3]) : ?>
+                <li><?php echo $recipes[$lines][0] . ' (' . $recipes[$lines][2] . ')'; ?></li>
+            <?php endif ?>
+        <?php endfor; ?>
     </ul>
-
-    <p>Aujourd'hui nous sommes le <?php echo date('d/m/Y h:i:s'); ?>.</p>
 </body>
 
 </html>
