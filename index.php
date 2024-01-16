@@ -35,13 +35,13 @@ $recipes =
             'title' => 'Pizza Yolo',
             'content' => $lorem,
             'author' => 'four.furieu@jaymeyl.com',
-            'isDisplayed' => false,
+            'isDisplayed' => true,
         ],
         [
             'title' => 'Pizza Spicy',
             'content' => $lorem,
             'author' => 'four.furieu@jaymeyl.com',
-            'isDisplayed' => true,
+            'isDisplayed' => false,
         ],
         [
             'title' => 'Pizza Reptilien',
@@ -51,7 +51,17 @@ $recipes =
         ],
     ];
 
-$totalrecipes = 4;
+function isValidRecipe(array $recipe)
+{
+    if (array_key_exists('isDisplayed', $recipe)) {
+        $value = $recipe['isDisplayed'];
+    } else {
+        $value = false;
+    }
+    return $value;
+}
+
+
 
 ?>
 
@@ -65,7 +75,7 @@ $totalrecipes = 4;
 
 <body>
     <section id="section-recipes">
-        <h1>Recettes de Pizza</h1>
+        <h1>Pizza Recipes</h1>
 
         <?php
         foreach ($recipes as $item) : ?>
@@ -77,11 +87,11 @@ $totalrecipes = 4;
                     </h2>
 
                     <p>
-                        <?php echo $item['content'] ?>
+                        <?php echo $item['content']; ?>
                     </p>
 
                     <p>from user :<em>
-                            <?php echo $item['author'] ?>
+                            <?php echo $item['author']; ?>
                         </em></p>
                 </article>
             <?php endif; ?>
