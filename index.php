@@ -80,7 +80,7 @@ function isValidRecipe(array $recipe)
         <?php
         foreach ($recipes as $item) : ?>
 
-            <?php if (array_key_exists('isDisplayed', $item) && $item['isDisplayed']) : ?>
+            <?php if (isValidRecipe($item)) : ?>
                 <article>
                     <h2>
                         <?php echo $item['title']; ?>
