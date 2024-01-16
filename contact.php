@@ -6,30 +6,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site de Recettes - Page d'accueil</title>
+    <title>Your Pizza ! - Contact</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 
 <body class="d-flex flex-column min-vh-100">
+
+    <?php require_once(__DIR__ . '/includes/header.php'); ?>
     <div class="container">
-        <?php require_once(__DIR__ . '/header.php'); ?>
-        <h1>Contactez nous</h1>
+        <h1>Contact us</h1>
         <form>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="email-help">
-                <div id="email-help" class="form-text">Nous ne revendrons pas votre email.</div>
+                <div id="email-help" class="form-text">We won't sell your email (for real).</div>
             </div>
             <div class="mb-3">
-                <label for="message" class="form-label">Votre message</label>
-                <textarea class="form-control" placeholder="Exprimez vous" id="message" name="message"></textarea>
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" placeholder="Your voice" id="message" name="message"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Envoyer</button>
+            <button type="submit" class="btn btn-primary">Send</button>
         </form>
-        <br />
     </div>
-    <?php require_once(__DIR__ . '/footer.php'); ?>
+    <br />
+
+    <?php require_once(__DIR__ . '/includes/footer.php'); ?>
 </body>
 
 
