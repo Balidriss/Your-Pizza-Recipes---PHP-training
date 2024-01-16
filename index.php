@@ -110,9 +110,9 @@ function authorInfo(string $email, array $users): array
                     <?php echo $item['content']; ?>
                 </p>
 
-                <p>from user :<em>
-                        <?php echo authorInfo($item['author'], $users)['full_name'] . ' age : ' . authorInfo($item['author'], $users)['age'] . ' ans.'; ?>
-                    </em></p>
+                <p>from :
+                    <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em> - Age : <em><?php echo authorInfo($item['author'], $users)['age']; ?> ans.</em>
+                </p>
             </article>
 
         <?php endforeach; ?>
