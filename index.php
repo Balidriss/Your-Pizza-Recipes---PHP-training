@@ -42,21 +42,24 @@ $totalrecipes = 4;
 <body>
     <h1>Recettes de Pizza</h1>
 
-    <?php for ($lines = 0; $lines < $totalrecipes; $lines++) : ?>
-        <?php if ($recipes[$lines]['isDisplayed']) : ?>
-            <h2>
-                <?php echo $recipes[$lines]['title'] ?>
-            </h2>
-            <p>
-                <?php echo $recipes[$lines]['content'] ?>
-            </p>
+    <?php
+    foreach ($recipes as $item) : ?>
 
-            <p>from user :<em>
-                    <?php echo $recipes[$lines]['author'] ?>
-                </em></p>
+        <?php if (array_key_exists('isDisplayed', $item) && $item['isDisplayed']) : ?>
+            <article>
+                <h2>
+                    <?php echo $item['title']; ?>
+                </h2>
 
+                <p>
+                    <?php echo $item['content'] ?>
+                </p>
+                <p>from user :<em>
+                        <?php echo $item['author'] ?>
+                    </em></p>
+            </article>
         <?php endif; ?>
-    <?php endfor; ?>
+    <?php endforeach; ?>
 
 </body>
 
