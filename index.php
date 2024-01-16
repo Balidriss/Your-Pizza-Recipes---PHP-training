@@ -101,7 +101,7 @@ function authorInfo(string $email, array $users): array
         foreach (displayableRecipes($recipes) as $item) : ?>
 
 
-            <article>
+            <article class='<?php echo preg_replace('/\s+/', '-', $item['title']) ?>'>
                 <h2>
                     <?php echo $item['title']; ?>
                 </h2>
