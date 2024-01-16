@@ -1,6 +1,9 @@
 <?php
+
+
 $lorem = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia voluptatibus corporis, soluta et ex quo? Corporis eligendi iure harum quos tempora odio repellat ipsum unde sequi, dolorem magni debitis nam.";
-// Déclaration du tableau des recettes : nom , contenu, afficher.
+
+// Déclaration du tableau des recettes : nom , contenu, author, afficher.
 $recipes = [
     [
         'title' => 'Pizza Classic',
@@ -37,30 +40,33 @@ $totalrecipes = 4;
 
 <head>
     <title>Affichage des recettes de Pizza</title>
+    <link href="style/style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Recettes de Pizza</h1>
+    <section id="section-recipes">
+        <h1>Recettes de Pizza</h1>
 
-    <?php
-    foreach ($recipes as $item) : ?>
+        <?php
+        foreach ($recipes as $item) : ?>
 
-        <?php if (array_key_exists('isDisplayed', $item) && $item['isDisplayed']) : ?>
-            <article>
-                <h2>
-                    <?php echo $item['title']; ?>
-                </h2>
+            <?php if (array_key_exists('isDisplayed', $item) && $item['isDisplayed']) : ?>
+                <article>
+                    <h2>
+                        <?php echo $item['title']; ?>
+                    </h2>
 
-                <p>
-                    <?php echo $item['content'] ?>
-                </p>
-                <p>from user :<em>
-                        <?php echo $item['author'] ?>
-                    </em></p>
-            </article>
-        <?php endif; ?>
-    <?php endforeach; ?>
+                    <p>
+                        <?php echo $item['content'] ?>
+                    </p>
 
+                    <p>from user :<em>
+                            <?php echo $item['author'] ?>
+                        </em></p>
+                </article>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </section>
 </body>
 
 </html>
