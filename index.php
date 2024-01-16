@@ -72,6 +72,17 @@ function displayableRecipes(array $recipes): array
 }
 
 
+function authorInfo(string $email, array $users): array
+{
+    foreach ($users as $item) {
+        if ($email === $item['email'])
+            $value = ['full_name' => $item['full_name'], 'age' => $item['age']];
+    }
+
+    return $value;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +111,7 @@ function displayableRecipes(array $recipes): array
                 </p>
 
                 <p>from user :<em>
-                        <?php echo $item['author']; ?>
+                        <?php echo authorInfo($item['author'], $users)['full_name'] . ' age : ' . authorInfo($item['author'], $users)['age'] . ' ans.'; ?>
                     </em></p>
             </article>
 
