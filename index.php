@@ -24,7 +24,7 @@ $totalrecipes = 4;
         <?php for ($lines = 0; $lines < $totalrecipes; $lines++) : ?>
             <?php if ($recipes[$lines][3]) : ?>
                 <li><?php echo $recipes[$lines][0] . ' (' . $recipes[$lines][2] . ')'; ?></li>
-            <?php endif ?>
+            <?php endif; ?>
         <?php endfor; ?>
     </ul>
 </body>
