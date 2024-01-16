@@ -1,12 +1,13 @@
-<?php require_once(__DIR__ . '/includes/variable.php'); ?>
-<?php require_once(__DIR__ . '/includes/function.php'); ?>
-
+<?php
+require_once(__DIR__ . '/includes/variable.php');
+require_once(__DIR__ . '/includes/function.php');
+?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Affichage des recettes de Pizza</title>
+    <title>Your Pizza !</title>
     <link href="style/style.css" type="text/css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -34,7 +35,7 @@
                 <p>from :
                     <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em>
                     <?php if (authorInfo($item['author'], $users)['age'] >= 0) : ?>
-                        - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> ans.</em>
+                        - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> years old.</em>
                     <?php endif; ?>
                 </p>
             </article>
