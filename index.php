@@ -87,23 +87,23 @@ function displayableRecipes(array $recipes): array
         <h1>Pizza Recipes</h1>
 
         <?php
-        foreach ($recipes as $item) : ?>
+        foreach (displayableRecipes($recipes) as $item) : ?>
 
-            <?php if (isValidRecipe($item)) : ?>
-                <article>
-                    <h2>
-                        <?php echo $item['title']; ?>
-                    </h2>
 
-                    <p>
-                        <?php echo $item['content']; ?>
-                    </p>
+            <article>
+                <h2>
+                    <?php echo $item['title']; ?>
+                </h2>
 
-                    <p>from user :<em>
-                            <?php echo $item['author']; ?>
-                        </em></p>
-                </article>
-            <?php endif; ?>
+                <p>
+                    <?php echo $item['content']; ?>
+                </p>
+
+                <p>from user :<em>
+                        <?php echo $item['author']; ?>
+                    </em></p>
+            </article>
+
         <?php endforeach; ?>
     </section>
 </body>
