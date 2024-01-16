@@ -75,10 +75,13 @@ function displayableRecipes(array $recipes): array
 function authorInfo(string $email, array $users): array
 {
     foreach ($users as $item) {
-        if ($email === $item['email'])
+        if ($email === $item['email']) {
             $value = ['full_name' => $item['full_name'], 'age' => $item['age']];
+            return $value;
+        } else {
+            $value = ['full_name' => 'Anonym', 'age' => -1];
+        }
     }
-
     return $value;
 }
 
@@ -101,7 +104,7 @@ function authorInfo(string $email, array $users): array
         foreach (displayableRecipes($recipes) as $item) : ?>
 
 
-            <article class='<?php echo preg_replace('/\s+/', '-', $item['title']) ?>'>
+            <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>
                 <h2>
                     <?php echo $item['title']; ?>
                 </h2>
@@ -111,7 +114,10 @@ function authorInfo(string $email, array $users): array
                 </p>
 
                 <p>from :
-                    <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em> - Age : <em><?php echo authorInfo($item['author'], $users)['age']; ?> ans.</em>
+                    <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em>
+                    <?php if (authorInfo($item['author'], $users)['age'] >= 0) : ?>
+                        - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> ans.</em>
+                    <?php endif; ?>
                 </p>
             </article>
 
