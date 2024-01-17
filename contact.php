@@ -16,15 +16,20 @@
     <?php require_once(__DIR__ . '/includes/header.php'); ?>
     <div class="container">
         <h1>Contact us</h1>
-        <form action="submit_contact.php" method="post">
-            <div class="mb-3">
+        <form action="submit_contact.php" method="post" enctype="multipart/form-data">
+            <div class=" mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="email-help">
                 <div id="email-help" class="form-text">We won't sell your email (for real).</div>
             </div>
             <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
+
                 <textarea class="form-control" placeholder="Your message" id="message" name="message"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="screenshot" class="form-label">Your screenshot</label>
+                <input type="file" class="form-control" id="screenshot" name="screenshot" />
             </div>
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
