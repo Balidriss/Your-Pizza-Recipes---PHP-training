@@ -35,6 +35,16 @@ if (!in_array($extension, $allowedExtensions)) {
     return;
 }
 
+//test upload folder path
+$path = __DIR__ . '/uploads/';
+if (!is_dir($path)) {
+    echo "Upload wasn't successfull, the upload folder was missing.";
+    return;
+}
+
+move_uploaded_file($_FILES['screenshot']['tmp_name'], $path . basename($_FILES['screenshot']['name']))
+
+
 ?>
 <!DOCTYPE html>
 <html>
