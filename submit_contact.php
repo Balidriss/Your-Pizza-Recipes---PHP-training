@@ -1,8 +1,13 @@
 <?php
 $getData = $_GET;
 
-if (!isset($getData['email']) || !isset($getData['message'])) {
-    echo ('Email and message are missing. Please make sure you completed the form correctly.');
+if (
+    !isset($getData['email'])
+    || !filter_var($getData['email'], FILTER_VALIDATE_EMAIL)
+    || empty($getData['message'])
+    || trim($getData['message']) === ''
+) {
+    echo ('Email or message are wrong. Please make sure you completed the form correctly.');
 
     return;
 }
