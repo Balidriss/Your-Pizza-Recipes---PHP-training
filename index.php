@@ -16,12 +16,14 @@ require_once(__DIR__ . '/includes/function.php');
 
     <?php
     require_once(__DIR__ . '/includes/header.php'); ?>
-
+    <div class="container">
+        <h1>Your Pizza !</h1>
+        <p><em>Share your pizza recipes !</em></p>
+    </div>
     <?php if (isUserLoggedIn($currentUser)) : ?>
         <section id="section-recipes">
-
             <div class="container">
-                <h1>Pizza Recipes</h1>
+                <h2>Pizza Recipes</h2>
 
                 <?php
                 foreach (displayableRecipes($recipes) as $item) : ?>
@@ -49,10 +51,16 @@ require_once(__DIR__ . '/includes/function.php');
         </section>
     <?php else : ?>
         <section id="section-login">
-            <h2>Login to see the recipes</h2>
-            <form action="page_login.php" method="post">
+            <div class="container">
+                <h2>Login</h2>
 
-            </form>
+                <form action="page_login.php" method="post">
+                    <div class=" mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="email-help">
+                    </div>
+                </form>
+            </div>
         </section>
 
     <?php endif; ?>
