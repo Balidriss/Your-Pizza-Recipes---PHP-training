@@ -19,3 +19,9 @@ article {
     padding-left: 10px;
 
 }
+
+.success {
+    background-color: green;
+    padding: 10px;
+    border-radius: 3px;
+}
