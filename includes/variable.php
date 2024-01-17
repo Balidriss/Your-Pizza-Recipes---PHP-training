@@ -7,16 +7,22 @@ $users =
             'full_name' => 'Classic Andy',
             'email' => 'classic.andy@jaymeyl.com',
             'age' => 69,
+            'isLoggedIn' => false,
+            'password' => 'CA0000'
         ],
         [
             'full_name' => 'Fabrice Bricefa',
             'email' => 'four.furieu@jaymeyl.com',
             'age' => 34,
+            'isLoggedIn' => false,
+            'password' => 'FB0000'
         ],
         [
             'full_name' => 'Anna Conda',
             'email' => 'anna.conda@jaymeyl.com',
             'age' => 28,
+            'isLoggedIn' => false,
+            'password' => 'FB0000'
         ],
     ];
 
