@@ -18,11 +18,6 @@ require_once(__DIR__ . '/includes/function.php');
     require_once(__DIR__ . '/includes/header.php'); ?>
 
     <?php if (isUserLoggedIn($currentUser)) : ?>
-
-
-
-
-
         <section id="section-recipes">
 
             <div class="container">
@@ -52,6 +47,14 @@ require_once(__DIR__ . '/includes/function.php');
                 <?php endforeach; ?>
             </div>
         </section>
+    <?php else : ?>
+        <section id="section-login">
+            <h2>Login to see the recipes</h2>
+            <form action="page_login.php" method="post">
+
+            </form>
+        </section>
+
     <?php endif; ?>
     <?php require_once(__DIR__ . '/includes/footer.php'); ?>
 </body>
