@@ -15,44 +15,44 @@ require_once(__DIR__ . '/includes/function.php');
 <body>
 
     <?php
-    require_once(__DIR__ . '/includes/header.php');
+    require_once(__DIR__ . '/includes/header.php'); ?>
 
-    if ($isUserLoggedIn) {
-    }
-
-
-    ?>
+    <?php if (isUserLoggedIn($currentUser)) : ?>
 
 
-    <section id="section-recipes">
-
-        <div class="container">
-            <h1>Pizza Recipes</h1>
-
-            <?php
-            foreach (displayableRecipes($recipes) as $item) : ?>
 
 
-                <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>
-                    <h2>
-                        <?php echo $item['title']; ?>
-                    </h2>
 
-                    <p>
-                        <?php echo $item['content']; ?>
-                    </p>
+        <section id="section-recipes">
 
-                    <p>from :
-                        <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em>
-                        <?php if (authorInfo($item['author'], $users)['age'] >= 0) : ?>
-                            - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> years old.</em>
-                        <?php endif; ?>
-                    </p>
-                </article>
+            <div class="container">
+                <h1>Pizza Recipes</h1>
 
-            <?php endforeach; ?>
-        </div>
-    </section>
+                <?php
+                foreach (displayableRecipes($recipes) as $item) : ?>
+
+
+                    <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>
+                        <h2>
+                            <?php echo $item['title']; ?>
+                        </h2>
+
+                        <p>
+                            <?php echo $item['content']; ?>
+                        </p>
+
+                        <p>from :
+                            <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em>
+                            <?php if (authorInfo($item['author'], $users)['age'] >= 0) : ?>
+                                - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> years old.</em>
+                            <?php endif; ?>
+                        </p>
+                    </article>
+
+                <?php endforeach; ?>
+            </div>
+        </section>
+    <?php endif; ?>
     <?php require_once(__DIR__ . '/includes/footer.php'); ?>
 </body>
 
