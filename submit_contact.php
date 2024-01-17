@@ -1,11 +1,11 @@
 <?php
-$getData = $_GET;
+$postData = $_POST;
 
 if (
-    !isset($getData['email'])
-    || !filter_var($getData['email'], FILTER_VALIDATE_EMAIL)
-    || empty($getData['message'])
-    || trim($getData['message']) === ''
+    !isset($postData['email'])
+    || !filter_var($postData['email'], FILTER_VALIDATE_EMAIL)
+    || empty($postData['message'])
+    || trim($postData['message']) === ''
 ) {
     echo ('Email or message are wrong. Please make sure you completed the form correctly.');
 
@@ -30,8 +30,8 @@ if (
 
             <div class="card-body">
                 <h5 class="card-title">Review your information</h5>
-                <p class="card-text"><b>Email</b> : <?php echo $_GET['email']; ?></p>
-                <p class="card-text"><b>Message</b> : <?php echo $_GET['message']; ?></p>
+                <p class="card-text"><b>Email</b> : <?php echo $postData['email']; ?></p>
+                <p class="card-text"><b>Message</b> : <?php echo strip_tags($postData['message']); ?></p>
             </div>
         </div>
     </div>
