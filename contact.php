@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" placeholder="Your voice" id="message" name="message"></textarea>
+                <textarea class="form-control" placeholder="Your message" id="message" name="message"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
