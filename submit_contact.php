@@ -16,7 +16,7 @@ if (
 <html>
 
 <head>
-    <title>Your Pizza ! - Home</title>
+    <title>Your Pizza ! - Contact received</title>
     <link href="style/style.css" type="text/css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
