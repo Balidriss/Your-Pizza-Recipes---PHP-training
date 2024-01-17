@@ -14,9 +14,18 @@ require_once(__DIR__ . '/includes/function.php');
 
 <body>
 
-    <?php require_once(__DIR__ . '/includes/header.php'); ?>
+    <?php
+    require_once(__DIR__ . '/includes/header.php');
+
+    if ($isUserLoggedIn) {
+    }
+
+
+    ?>
+
 
     <section id="section-recipes">
+
         <div class="container">
             <h1>Pizza Recipes</h1>
 
