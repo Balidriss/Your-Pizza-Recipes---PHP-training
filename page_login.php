@@ -30,7 +30,7 @@ function checkUserPassword(string $email, string $password, array $users): bool
 
 
 if (checkUserPassword($loginData['email'], $loginData['password'], $users)) {
-    echo "yes";
+    $currentUser = ['email' => $loginData['email']];
 } else {
     echo "no";
 }
