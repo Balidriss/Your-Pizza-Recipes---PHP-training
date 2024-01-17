@@ -20,7 +20,8 @@ require_once(__DIR__ . '/includes/function.php');
         <h1>Your Pizza !</h1>
         <p><em>Share your pizza recipes !</em></p>
     </div>
-    <?php if (isUserLoggedIn($currentUser)) : ?>
+    <?php require_once(__DIR__ . '/includes/login.php'); ?>
+    <?php if (isset($currentUser)) : ?>
         <section id="section-recipes">
             <div class="container">
                 <h2>Pizza Recipes</h2>
@@ -30,9 +31,9 @@ require_once(__DIR__ . '/includes/function.php');
 
 
                     <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>
-                        <h2>
+                        <h3>
                             <?php echo $item['title']; ?>
-                        </h2>
+                        </h3>
 
                         <p>
                             <?php echo $item['content']; ?>
@@ -49,25 +50,7 @@ require_once(__DIR__ . '/includes/function.php');
                 <?php endforeach; ?>
             </div>
         </section>
-    <?php else : ?>
-        <section id="section-login">
-            <div class="container">
-                <h2>Login</h2>
-                <form action="page_login.php" method="post">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="email-help" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" aria-describedby="password-help" required>
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                </form>
-            </div>
-        </section>
+
 
     <?php endif; ?>
     <?php require_once(__DIR__ . '/includes/footer.php'); ?>
