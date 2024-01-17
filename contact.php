@@ -16,7 +16,7 @@
     <?php require_once(__DIR__ . '/includes/header.php'); ?>
     <div class="container">
         <h1>Contact us</h1>
-        <form>
+        <form action="submit_contact.php" method="get">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="email-help">
