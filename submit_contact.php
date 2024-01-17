@@ -1,5 +1,10 @@
 <?php
+
 $postData = $_POST;
+
+// FILE Transfert //
+$allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+//               //
 
 if (
     !isset($postData['email'])
@@ -7,10 +12,29 @@ if (
     || empty($postData['message'])
     || trim($postData['message']) === ''
 ) {
-    echo ('Email or message are wrong. Please make sure you completed the form correctly.');
+    echo ('Email or message is wrong. Please make sure you completed the form correctly.');
 
     return;
 }
+
+
+if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
+    if ($_FILES['screenshot']['size'] > 1000000) {
+        echo "File too large.";
+        return;
+    }
+}
+
+$fileInfo = pathinfo($_FILES['screenshot']['name']);
+$extension = $fileInfo['extension'];
+
+
+
+if (!in_array($extension, $allowedExtensions)) {
+    echo "Upload wasn't successfull, the extention {$extention} was not allowed.";
+    return;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
