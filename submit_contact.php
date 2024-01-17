@@ -1,5 +1,10 @@
 <?php
+
 $postData = $_POST;
+
+// FILE Transfert //
+$allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+//               //
 
 if (
     !isset($postData['email'])
@@ -7,9 +12,38 @@ if (
     || empty($postData['message'])
     || trim($postData['message']) === ''
 ) {
-    echo ('Email or message are wrong. Please make sure you completed the form correctly.');
+    echo ('Email or message is wrong. Please make sure you completed the form correctly.');
 
     return;
+}
+
+
+if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
+    if ($_FILES['screenshot']['size'] > 1000000) {
+        echo "File too large.";
+        return;
+    }
+
+
+    $fileInfo = pathinfo($_FILES['screenshot']['name']);
+    $extension = $fileInfo['extension'];
+
+
+
+    if (!in_array($extension, $allowedExtensions)) {
+        echo "Upload wasn't successfull, the extention {$extention} was not allowed.";
+        return;
+    }
+
+    //test upload folder path
+    $path = __DIR__ . '/uploads/';
+    if (!is_dir($path)) {
+        echo "Upload wasn't successfull, the upload folder was missing.";
+        return;
+    }
+
+    move_uploaded_file($_FILES['screenshot']['tmp_name'], $path . basename($_FILES['screenshot']['name']));
+    $isFileLoaded = true;
 }
 ?>
 <!DOCTYPE html>
@@ -32,6 +66,12 @@ if (
                 <h5 class="card-title">Review your information</h5>
                 <p class="card-text"><b>Email</b> : <?php echo $postData['email']; ?></p>
                 <p class="card-text"><b>Message</b> : <?php echo strip_tags($postData['message']); ?></p>
+
+                <?php if ($isFileLoaded) : ?>
+                    <div class="success">
+                        <p>We received your screenshot, thank you !</p>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
