@@ -54,3 +54,5 @@ $recipes =
             'isDisplayed' => true,
         ],
     ];
+
+$currentUser = [];

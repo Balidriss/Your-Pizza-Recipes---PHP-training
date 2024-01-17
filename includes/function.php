@@ -33,3 +33,14 @@ function authorInfo(string $email, array $users): array
     }
     return $value;
 }
+
+function isUserLoggedIn(array $user): bool
+{
+    $value = false;
+    if (isset($user)) {
+        if (isset($user['isLoggedIn'])) {
+            $value = $user['isLoggedIn'];
+        }
+    }
+    return $value;
+}
