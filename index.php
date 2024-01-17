@@ -62,7 +62,7 @@ require_once(__DIR__ . '/includes/function.php');
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" aria-describedby="password-help" required>
                     </div>
-                    <div class=" mb-3">
+                    <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                 </form>
