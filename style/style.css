@@ -9,6 +9,17 @@ article {
     max-width: 500px;
 }
 
+form {
+    padding: 25px;
+    background-color: #aaa;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+section {
+    margin: 10px 0;
+}
+
 #section-recipes {
     display: flex;
     flex-direction: column;
