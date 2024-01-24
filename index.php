@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__ . '/includes/variable.php');
 require_once(__DIR__ . '/includes/function.php');
 ?>
@@ -21,7 +22,7 @@ require_once(__DIR__ . '/includes/function.php');
         <p><em>Share your pizza recipes !</em></p>
     </div>
     <?php require_once(__DIR__ . '/includes/login.php'); ?>
-    <?php if (isset($currentUser)) : ?>
+    <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
         <section id="section-recipes">
             <div class="container">
                 <h2>Pizza Recipes</h2>

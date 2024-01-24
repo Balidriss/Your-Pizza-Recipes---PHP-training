@@ -44,3 +44,8 @@ function isUserLoggedIn(array $user): bool
     }
     return $value;
 }
+function redirectToUrl(string $url): never
+{
+    header("Location: {$url}");
+    exit();
+}

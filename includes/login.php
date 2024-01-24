@@ -1,37 +1,15 @@
-<?php
-
-$loginData = $_POST;
-
-
-if (isset($loginData['email']) &&  isset($loginData['password'])) {
-    if (!filter_var($loginData['email'], FILTER_VALIDATE_EMAIL)) {
-        $error = 'Email not valid.';
-    } else {
-        foreach ($users as $item) {
-            if ($item['email'] === $loginData['email'] && $item['password'] === $loginData['password']) {
-                $currentUser = ['email' => $item['email']];
-            }
-        }
-        if (!isset($currentdUser)) {
-            $error = 'You have entered an invalid username or password';
-        }
-    }
-}
-
-
-
-if (!isset($currentUser)) : ?>
-
-
+<?php if (!isset($_SESSION['LOGGED_USER'])) : ?>
     <section id="section-login">
         <div class="container">
-            <?php if (isset($error)) : ?>
+            <?php if (isset($_SESSION['LOGIN_ERROR_MESSAGE'])) : ?>
                 <div class="oups">
-                    <p><?php echo $error; ?></p>
+                    <p><?php echo $_SESSION['LOGIN_ERROR_MESSAGE'];
+                        unset($_SESSION['LOGIN_ERROR_MESSAGE']); ?>
+                    </p>
                 </div>
             <?php endif; ?>
             <h2>Login</h2>
-            <form action="index.php" method="post">
+            <form action="submit_login.php" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="email-help" required>
@@ -48,7 +26,7 @@ if (!isset($currentUser)) : ?>
 <?php else : ?>
     <div class="container">
         <div class="welcome-message">
-            <p> You are logged in as <?php echo authorInfo($currentUser['email'], $users)['full_name']; ?> !</p>
+            <p> You are logged in as <?php echo $_SESSION['LOGGED_USER']['email']; ?> !</p>
         </div>
     </div>
 

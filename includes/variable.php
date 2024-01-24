@@ -8,21 +8,24 @@ $users =
             'email' => 'classic.andy@jaymeyl.com',
             'age' => 69,
             'isLoggedIn' => false,
-            'password' => 'CA0000'
+            'password' => 'CA0000',
+            'user_id' => ''
         ],
         [
             'full_name' => 'Fabrice Bricefa',
             'email' => 'four.furieu@jaymeyl.com',
             'age' => 34,
             'isLoggedIn' => false,
-            'password' => 'FB0000'
+            'password' => 'FB0000',
+            'user_id' => ''
         ],
         [
             'full_name' => 'Anna Conda',
             'email' => 'anna.conda@jaymeyl.com',
             'age' => 28,
             'isLoggedIn' => false,
-            'password' => 'FB0000'
+            'password' => 'FB0000',
+            'user_id' => ''
         ],
     ];
 
