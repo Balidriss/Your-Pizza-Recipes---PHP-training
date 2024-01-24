@@ -34,18 +34,14 @@ function authorInfo(string $email, array $users): array
     return $value;
 }
 
-function isUserLoggedIn(array $user): bool
-{
-    $value = false;
-    if (isset($user)) {
-        if (isset($user['isLoggedIn'])) {
-            $value = $user['isLoggedIn'];
-        }
-    }
-    return $value;
-}
+
 function redirectToUrl(string $url): never
 {
     header("Location: {$url}");
     exit();
+}
+
+function disconect()
+{
+    $_SESSION['LOGGED_USER'] = null;
 }
