@@ -3,7 +3,7 @@ session_start();
 require_once(__DIR__ . '/config/mysql.php');
 require_once(__DIR__ . '/databaseconnect.php');
 require_once(__DIR__ . '/includes/variable.php');
-require_once(__DIR__ . '/includes/function.php');
+
 
 $recipeData = $_POST;
 
@@ -17,4 +17,7 @@ if (isset($recipeData['title']) &&  isset($recipeData['content'])) {
         'is_enabled' => 1,
     ]);
     redirectToUrl('index.php');
+} else {
+    echo 'No recipes name or content submited';
+    return;
 }
