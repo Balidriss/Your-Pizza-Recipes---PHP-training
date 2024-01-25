@@ -19,8 +19,3 @@ function redirectToUrl(string $url): never
     header("Location: {$url}");
     exit();
 }
-
-function disconect()
-{
-    $_SESSION['LOGGED_USER'] = null;
-}

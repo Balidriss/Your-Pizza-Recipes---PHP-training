@@ -30,24 +30,29 @@ require_once(__DIR__ . '/includes/function.php');
                 <h2>Pizza Recipes</h2>
                 <div class="container pizza-recipes-container">
                     <?php
-                    foreach ($recipes as $item) : ?>
-
-
-                        <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>
+                    foreach ($recipes as $recipe) : ?>
+                        <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $recipe['title'])); ?>'>
                             <h3>
-                                <?php echo $item['title']; ?>
+                                <?php echo $recipe['title']; ?>
                             </h3>
 
                             <p>
-                                <?php echo $item['content']; ?>
+                                <?php echo $recipe['content']; ?>
                             </p>
 
                             <p>from :
-                                <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em>
-                                <?php if (authorInfo($item['author'], $users)['age'] >= 0) : ?>
-                                    - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> years old.</em>
+                                <em> <?php echo authorInfo($recipe['author'], $users)['full_name']; ?> </em>
+                                <?php if (authorInfo($recipe['author'], $users)['age'] >= 0) : ?>
+                                    - Age : <em> <?php echo authorInfo($recipe['author'], $users)['age'] ?> years old.</em>
                                 <?php endif; ?>
                             </p>
+                            <!-- only the logged user can edit his own article -->
+                            <?php if (isset($_SESSION['LOGGED_USER']) && $recipe['author'] === $_SESSION['LOGGED_USER']['email']) : ?>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><a class="link-warning" href="recipes_update.php?id=<?php echo ($recipe['recipe_id']); ?>">Editer l'article</a></li>
+                                    <li class="list-group-item"><a class="link-danger" href="recipes_delete.php?id=<?php echo ($recipe['recipe_id']); ?>">Supprimer l'article</a></li>
+                                </ul>
+                            <?php endif; ?>
                         </article>
 
                     <?php endforeach; ?>
