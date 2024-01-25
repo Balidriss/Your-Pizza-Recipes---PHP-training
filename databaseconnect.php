@@ -14,3 +14,8 @@ try {
 // === Insert recipe
 
 $insertRecipe = $mysqlClient->prepare('INSERT INTO recipes(title, content, author, is_enabled) VALUES (:title, :content, :author, :is_enabled)');
+
+// === Update recipe
+
+// === Delete recipe
+$deleteRecipeStatement = $mysqlClient->prepare('DELETE FROM recipes WHERE recipe_id = :id');

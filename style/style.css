@@ -23,7 +23,7 @@ section {
 #section-recipes .pizza-recipes-container {
     display: flex;
     justify-content: flex-start;
-    flex-wrap: nowrap;
+    flex-wrap: wrap-reverse;
     padding: 30px;
     gap: 1rem;
 }
