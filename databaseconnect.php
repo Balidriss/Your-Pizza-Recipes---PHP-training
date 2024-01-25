@@ -10,3 +10,7 @@ try {
 } catch (Exception $exception) {
     die('Erreur : ' . $exception->getMessage());
 }
+
+// === Insert recipe
+
+$insertRecipe = $mysqlClient->prepare('INSERT INTO recipes(title, content, author, is_enabled) VALUES (:title, :content, :author, :is_enabled)');
