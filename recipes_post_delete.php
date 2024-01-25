@@ -11,7 +11,7 @@ if (!isset($postData['id']) || !is_numeric($postData['id'])) {
     echo 'Recipe id missing';
     return;
 }
-
+$deleteRecipeStatement = $mysqlClient->prepare('DELETE FROM recipes WHERE recipe_id = :id');
 $deleteRecipeStatement->execute([
     'id' => (int)$postData['id'],
 ]);
