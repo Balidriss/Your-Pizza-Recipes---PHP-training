@@ -33,7 +33,7 @@ require_once(__DIR__ . '/includes/function.php');
                     foreach ($recipes as $recipe) : ?>
                         <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $recipe['title'])); ?>'>
                             <h3>
-                                <?php echo $recipe['title']; ?>
+                                <a href="recipes_read.php?id=<?php echo ($recipe['recipe_id']) ?>"><?php echo $recipe['title']; ?></a>
                             </h3>
 
                             <p>
