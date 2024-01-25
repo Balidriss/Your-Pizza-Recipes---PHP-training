@@ -2,8 +2,8 @@
 
 function isValidRecipe(array $recipe): bool
 {
-    if (array_key_exists('isDisplayed', $recipe)) {
-        $value = $recipe['isDisplayed'];
+    if (array_key_exists('is_enabled', $recipe)) {
+        $value = $recipe['is_enabled'];
     } else {
         $value = false;
     }
