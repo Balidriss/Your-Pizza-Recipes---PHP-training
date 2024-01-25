@@ -28,7 +28,7 @@ require_once(__DIR__ . '/includes/function.php');
                 <h2>Pizza Recipes</h2>
                 <div class="container pizza-recipes-container">
                     <?php
-                    foreach (displayableRecipes($recipes) as $item) : ?>
+                    foreach ($recipes as $item) : ?>
 
 
                         <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>

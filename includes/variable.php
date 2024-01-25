@@ -5,7 +5,7 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-$recipesStatement = $mysqlClient->prepare('SELECT * FROM recipes');
+$recipesStatement = $mysqlClient->prepare('SELECT * FROM recipes WHERE is_enabled = TRUE');
 $usersStatement = $mysqlClient->prepare('SELECT * FROM users');
 
 $recipesStatement->execute();
