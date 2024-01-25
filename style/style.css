@@ -20,10 +20,12 @@ section {
     margin: 10px 0;
 }
 
-#section-recipes {
+#section-recipes .pizza-recipes-container {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     padding: 30px;
+    gap: 1rem;
 }
 
 #section-recipes p:first-of-type {

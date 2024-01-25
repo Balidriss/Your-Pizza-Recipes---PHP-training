@@ -26,29 +26,30 @@ require_once(__DIR__ . '/includes/function.php');
         <section id="section-recipes">
             <div class="container">
                 <h2>Pizza Recipes</h2>
+                <div class="container pizza-recipes-container">
+                    <?php
+                    foreach (displayableRecipes($recipes) as $item) : ?>
 
-                <?php
-                foreach (displayableRecipes($recipes) as $item) : ?>
 
+                        <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>
+                            <h3>
+                                <?php echo $item['title']; ?>
+                            </h3>
 
-                    <article class='<?php echo strtolower(preg_replace('/\s+/', '-', $item['title'])); ?>'>
-                        <h3>
-                            <?php echo $item['title']; ?>
-                        </h3>
+                            <p>
+                                <?php echo $item['content']; ?>
+                            </p>
 
-                        <p>
-                            <?php echo $item['content']; ?>
-                        </p>
+                            <p>from :
+                                <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em>
+                                <?php if (authorInfo($item['author'], $users)['age'] >= 0) : ?>
+                                    - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> years old.</em>
+                                <?php endif; ?>
+                            </p>
+                        </article>
 
-                        <p>from :
-                            <em> <?php echo authorInfo($item['author'], $users)['full_name']; ?> </em>
-                            <?php if (authorInfo($item['author'], $users)['age'] >= 0) : ?>
-                                - Age : <em> <?php echo authorInfo($item['author'], $users)['age'] ?> years old.</em>
-                            <?php endif; ?>
-                        </p>
-                    </article>
-
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </section>
 
