@@ -81,7 +81,7 @@ foreach ($recipeWithComments as $comment) {
                     <?php foreach ($recipe['comments'] as $comment) : ?>
                         <div class="comment container">
                             <p><?php echo $comment['comment']; ?></p>
-                            <p><em>(<?php echo $comment['full_name']; ?>)</em> </p>
+                            <p><em> - <?php echo $comment['full_name']; ?></em> </p>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
