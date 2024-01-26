@@ -16,16 +16,30 @@ $recipeWithCommentsStatement = $mysqlClient->prepare('SELECT r.*, c.comment_id, 
 $recipeWithCommentsStatement->execute([
     'id' => (int)$getData['id'],
 ]);
-$recipe = $recipeWithCommentsStatement->fetchAll(PDO::FETCH_ASSOC);
-if (!$recipe) {
+$recipeWithComments = $recipeWithCommentsStatement->fetchAll(PDO::FETCH_ASSOC);
+if (!$recipeWithComments) {
     echo ('Recipe does not existe');
     return;
-} else {
-    foreach ($recipe as $comment) {
-        echo "yo";
-    }
 }
 
+$recipe = [
+    'recipe_id' => $recipeWithComments[0]['recipe_id'],
+    'title' => $recipeWithComments[0]['title'],
+    'content' => $recipeWithComments[0]['content'],
+    'author' => $recipeWithComments[0]['author'],
+    'comments' => [],
+];
+
+foreach ($recipeWithComments as $comment) {
+    if (!is_null($comment['comment_id'])) {
+        $recipe['comments'][] = [
+            'comment_id' => $comment['comment_id'],
+            'comment' => $comment['comment'],
+            'user_id' => (int) $comment['user_id'],
+            'full_name' => $comment['full_name']
+        ];
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -61,10 +75,20 @@ if (!$recipe) {
                 <p>from :
                     <em> <?php echo authorInfo($recipe['author'], $users)['full_name']; ?> </em>
                 </p>
-
             </div>
             <div class="comments-container container">
-                <!--  -->
+                <?php if ($recipe['comments'] !== []) : ?>
+                    <?php foreach ($recipe['comments'] as $comment) : ?>
+                        <div class="comment container">
+                            <p><?php echo $comment['comment']; ?></p>
+                            <p><em>(<?php echo $comment['full_name']; ?>)</em> </p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="comment container">
+                        <p><em>No comment.</em> </p>
+                    </div>
+                <?php endif; ?>
             </div>
     </section>
     <?php require_once(__DIR__ . '/includes/footer.php'); ?>
