@@ -90,6 +90,9 @@ foreach ($recipeWithComments as $comment) {
                     </div>
                 <?php endif; ?>
             </div>
+            <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
+                <?php require_once(__DIR__ . '/comment_create.php'); ?>
+            <?php endif; ?>
     </section>
     <?php require_once(__DIR__ . '/includes/footer.php'); ?>
 </body>
