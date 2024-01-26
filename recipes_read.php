@@ -12,7 +12,7 @@ if (!isset($getData['id']) || !is_numeric($getData['id'])) {
     echo 'Recipe id missing';
     return;
 }
-$recipeWithCommentsStatement = $mysqlClient->prepare('SELECT r.*, c.comment_id, c.comment, c.user_id, u.full_name FROM recipes r LEFT JOIN comments c on c.recipe_id = r.recipe_id LEFT JOIN users u ON u.user_id = c.user_id WHERE r.recipe_id = :id ');
+$recipeWithCommentsStatement = $mysqlClient->prepare('SELECT r.*, c.comment_id, c.comment, c.user_id, DATE_FORMAT(c.created_at, "%d/%m/%Y") AS comment_date, u.full_name FROM recipes r LEFT JOIN comments c on c.recipe_id = r.recipe_id LEFT JOIN users u ON u.user_id = c.user_id WHERE r.recipe_id = :id ORDER BY c.created_at DESC');
 $recipeWithCommentsStatement->execute([
     'id' => (int)$getData['id'],
 ]);
@@ -35,6 +35,7 @@ foreach ($recipeWithComments as $comment) {
         $recipe['comments'][] = [
             'comment_id' => $comment['comment_id'],
             'comment' => $comment['comment'],
+            'comment_date' => $comment['comment_date'],
             'user_id' => (int) $comment['user_id'],
             'full_name' => $comment['full_name']
         ];
@@ -81,7 +82,7 @@ foreach ($recipeWithComments as $comment) {
                     <?php foreach ($recipe['comments'] as $comment) : ?>
                         <div class="comment container">
                             <p><?php echo $comment['comment']; ?></p>
-                            <p><em> - <?php echo $comment['full_name']; ?></em> </p>
+                            <p><em> - <?php echo $comment['full_name']; ?></em> - written : <?php echo $comment['comment_date']; ?> </p>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
