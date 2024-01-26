@@ -22,12 +22,20 @@ if (!$recipeWithComments) {
     return;
 }
 
+$reviewAvgRatingStatement = $mysqlClient->prepare('SELECT ROUND(AVG(c.review),1) AS rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = :id');
+$reviewAvgRatingStatement->execute(
+    ['id' => (int)$getData['id']]
+);
+$avgRating = $reviewAvgRatingStatement->fetch();
+
+
 $recipe = [
     'recipe_id' => $recipeWithComments[0]['recipe_id'],
     'title' => $recipeWithComments[0]['title'],
     'content' => $recipeWithComments[0]['content'],
     'author' => $recipeWithComments[0]['author'],
     'comments' => [],
+    'rating' => $avgRating['rating']
 ];
 
 foreach ($recipeWithComments as $comment) {
@@ -68,7 +76,7 @@ foreach ($recipeWithComments as $comment) {
                 <h3>
                     <?php echo $recipe['title']; ?>
                 </h3>
-
+                <h2><?php echo $recipe['rating']; ?> / 5</h2>
                 <p>
                     <?php echo $recipe['content']; ?>
                 </p>
