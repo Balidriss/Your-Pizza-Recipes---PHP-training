@@ -10,7 +10,8 @@ $postData = $_POST;
 if (
     !isset($postData['comment']) ||
     !isset($postData['recipe_id']) ||
-    !is_numeric($postData['recipe_id'])
+    !is_numeric($postData['recipe_id']) ||
+    !is_numeric($postData['review'])
 ) {
     echo ('Your comment was not submmitted correctly.');
     return;
@@ -19,17 +20,24 @@ if (
 
 $comment = trim(strip_tags($postData['comment']));
 $recipeId = (int)$postData['recipe_id'];
+$review = (int)$postData['review'];
 
 if ($comment === '') {
     echo 'Your comment is empty, please try again with more characters';
     return;
 }
+if ($review < 1 || $review > 5) {
+    echo 'the review has wrong number input, try again';
+    return;
+}
 
-$insertRecipe = $mysqlClient->prepare('INSERT INTO comments(comment, recipe_id, user_id) VALUES (:comment, :recipe_id, :user_id)');
+
+$insertRecipe = $mysqlClient->prepare('INSERT INTO comments(comment, recipe_id, user_id, review) VALUES (:comment, :recipe_id, :user_id, :review)');
 $insertRecipe->execute([
     'comment' => $comment,
     'recipe_id' => $recipeId,
     'user_id' => $_SESSION['LOGGED_USER']['user_id'],
+    'review' => $review,
 ]);
 
 ?>
@@ -53,7 +61,8 @@ $insertRecipe->execute([
         <h2>Your submitted comment !</h2>
         <article>
             <p>
-            <p class="comment-submit"><b>Votre commentaire</b> : <?php echo strip_tags($comment); ?></p>
+            <p class="">Your rating : <?php echo strip_tags($review);  ?> </p>
+            <p class="comment-submit"><b>Votre commentaire</b> : <?php echo strip_tags($comment);  ?></p>
             </p>
         </article>
     </section>
