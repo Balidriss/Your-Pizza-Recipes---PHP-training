@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2024 at 05:58 PM
+-- Generation Time: Jan 26, 2024 at 12:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `your_pizza`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `recipe_id` int(11) NOT NULL,
+  `comment` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `user_id`, `recipe_id`, `comment`) VALUES
+(1, 4, 3, 'Wtf is this'),
+(2, 3, 3, 'It smells good in the oven');
 
 -- --------------------------------------------------------
 
@@ -76,6 +97,14 @@ INSERT INTO `users` (`user_id`, `full_name`, `email`, `password`, `age`) VALUES
 --
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `IDX_5F9E962A9D86650F` (`user_id`),
+  ADD KEY `IDX_5F9E962A69574A48` (`recipe_id`);
+
+--
 -- Indexes for table `recipes`
 --
 ALTER TABLE `recipes`
@@ -92,6 +121,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
@@ -102,6 +137,17 @@ ALTER TABLE `recipes`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `FK_5F9E962A69574A48` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_5F9E962A9D86650F` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
