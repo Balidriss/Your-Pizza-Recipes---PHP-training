@@ -12,16 +12,21 @@ if (!isset($getData['id']) || !is_numeric($getData['id'])) {
     echo 'Recipe id missing';
     return;
 }
-$readRecipeStatement = $mysqlClient->prepare('SELECT * FROM recipes WHERE recipe_id = :id');
-$readRecipeStatement->execute([
+$recipeWithCommentsStatement = $mysqlClient->prepare('SELECT r.*, c.comment_id, c.comment, c.user_id, u.full_name FROM recipes r LEFT JOIN comments c on c.recipe_id = r.recipe_id LEFT JOIN users u ON u.user_id = c.user_id WHERE r.recipe_id = :id ');
+$recipeWithCommentsStatement->execute([
     'id' => (int)$getData['id'],
 ]);
-
-$recipe = $readRecipeStatement->fetch();
+$recipe = $recipeWithCommentsStatement->fetchAll(PDO::FETCH_ASSOC);
 if (!$recipe) {
     echo ('Recipe does not existe');
     return;
+} else {
+    foreach ($recipe as $comment) {
+        echo "yo";
+    }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,7 +61,10 @@ if (!$recipe) {
                 <p>from :
                     <em> <?php echo authorInfo($recipe['author'], $users)['full_name']; ?> </em>
                 </p>
-                <!-- only the logged user can edit his own article -->
+
+            </div>
+            <div class="comments-container container">
+                <!--  -->
             </div>
     </section>
     <?php require_once(__DIR__ . '/includes/footer.php'); ?>
